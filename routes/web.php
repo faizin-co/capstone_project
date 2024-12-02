@@ -20,6 +20,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/pasien', [PasienController::class, 'save'])->name('pasien.save');
     Route::get('/addpasien', [PasienController::class, 'add'])->name('pasien.add');
     Route::get('/deletepasien/{id}', [PasienController::class, 'delete'])->name('pasien.delete');
+    Route::get('/editpasien/{id}', [PasienController::class, 'edit'])->name('pasien.edit');
+    Route::put('/updatepasien/{id}', [PasienController::class, 'update'])->name('pasien.update');
 });
 
 require __DIR__.'/auth.php';

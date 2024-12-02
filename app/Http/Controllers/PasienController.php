@@ -40,4 +40,36 @@ class PasienController extends Controller
         return Redirect::route('pasien.index');
 
     }
+
+    public function edit($id)
+    {
+        $data= Pasien::find($id);
+        return view('pasien.edit',compact('data'));
+    }
+    public function update(Request $request, $id)
+    {
+        // Validasi data dari request
+        $request->validate([
+            'pas_name' => 'required|string|max:255',
+            'pas_dob' => 'required|date',
+            'pas_wali' => 'required|string|max:255',
+            'pas_gen' => 'required|string|max:255',
+            'pas_alamat' => 'required|string|max:255',
+            'pas_hp' => 'required|string|max:15'
+        ]);
+
+        // Cari data pasien berdasarkan ID
+        $pasien = Pasien::find($id);
+
+        if (!$pasien) {
+            return redirect()->route('pasien.index')->with('error', 'Pasien tidak ditemukan.');
+        }
+
+        // Update data pasien
+        $pasien->update($request->all());
+
+        // Redirect kembali ke halaman index dengan pesan sukses
+        return redirect()->route('pasien.index')->with('success', 'Data pasien berhasil diperbarui.');
+    }
+
 }
