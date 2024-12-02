@@ -19,8 +19,38 @@
                 </li>
                 <li class="nav-item">
                     <a href="/pasien" class="nav-link">
-                        <i class="nav-icon fas fa-user-alt"></i>
+                        <i class="nav-icon fas fa-user-injured"></i>
                         <p>Pasien</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/screening" class="nav-link">
+                        <i class="nav-icon fas fa-stethoscope"></i>
+                        <p>Screening</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-calendar-alt"></i>
+                        <p>Jadwal</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-photo-video"></i>
+                        <p>Galery</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-newspaper"></i>
+                        <p>Berita</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-id-badge"></i>
+                        <p>Profile Posyandu</p>
                     </a>
                 </li>
                 <li class="nav-item">
@@ -28,11 +58,11 @@
                         <i class="nav-icon fas fa-sign-out-alt"></i>
                         <p>Logout</p>
                     </a>
-                
+
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
-                </li>                
+                </li>
             </ul>
         </nav>
     </div>
