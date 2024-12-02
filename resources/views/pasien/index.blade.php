@@ -33,6 +33,18 @@
                       <td>{{$item->pas_alamat}}</td>
                       <td>{{$item->pas_wali}}</td>
                       <td>{{$item->pas_hp}}</td>
+                      <td>
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-info">Action</button>
+                        <button type="button" class="btn btn-info dropdown-toggle dropdown-icon" data-toggle="dropdown">
+                          <span class="sr-only">Toggle Dropdown</span>
+                        </button>
+                        <div class="dropdown-menu" role="menu">
+                          <a class="dropdown-item" href="#">Edit</a>
+                          <a class="dropdown-item" href="{{route('pasien.delete',$item->id)}}">Delete</a>
+                        </div>
+                      </div>
+                    </td>
                     </tr>
                     @endforeach
                   </tbody>

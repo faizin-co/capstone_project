@@ -33,4 +33,11 @@ class PasienController extends Controller
     {
         return view('pasien.add');
     }
+    public function delete($id)
+    {
+        $data= Pasien::find($id);
+        $data->delete();
+        return Redirect::route('pasien.index');
+
+    }
 }

@@ -19,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
     Route::post('/pasien', [PasienController::class, 'save'])->name('pasien.save');
     Route::get('/addpasien', [PasienController::class, 'add'])->name('pasien.add');
+    Route::get('/deletepasien/{id}', [PasienController::class, 'delete'])->name('pasien.delete');
 });
 
 require __DIR__.'/auth.php';
