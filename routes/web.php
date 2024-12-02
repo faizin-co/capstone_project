@@ -17,6 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/pasien', [PasienController::class, 'index'])->name('pasien.index');
+    Route::post('/pasien', [PasienController::class, 'save'])->name('pasien.save');
+    Route::get('/addpasien', [PasienController::class, 'add'])->name('pasien.add');
 });
 
 require __DIR__.'/auth.php';
