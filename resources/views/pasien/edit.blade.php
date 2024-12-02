@@ -20,7 +20,7 @@
                         <div class="form-group">
                             <label>Jenis Kelamin</label>
                             <select class="form-control select2" name="pas_gen"  style="width: 100%;">
-                              <option {{ $data->pas_gen ? "Laki-Laku" : "selected"}}>Laki-Laki</option>
+                              <option {{ $data->pas_gen ? "Laki-Laki" : "selected"}}>Laki-Laki</option>
                               <option {{ $data->pas_gen ? "Perempuan" : "selected"}}>Perempuan</option>
                             </select>
                           </div>
