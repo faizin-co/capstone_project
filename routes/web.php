@@ -6,6 +6,8 @@ use App\Http\Controllers\ScreeningController;
 use App\Http\Controllers\JadwalController;
 use App\Http\Controllers\LandingController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\DashboardController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -43,12 +45,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/landing', [LandingController::class, 'index'])->name('landing.index');
 
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+
     Route::get('/about', [AboutController::class, 'index'])->name('about.index');
     Route::post('/about', [AboutController::class, 'save'])->name('about.save');
     Route::get('/addabout', [AboutController::class, 'add'])->name('about.add');
     Route::get('/deleteabout/{id}', [AboutController::class, 'delete'])->name('about.delete');
     Route::get('/editabout/{id}', [AboutController::class, 'edit'])->name('about.edit');
     Route::put('/updateabout/{id}', [AboutController::class, 'update'])->name('about.update');
+
+
 
 
 });
