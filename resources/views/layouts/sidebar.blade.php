@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <a href="/" class="brand-link">
-        <span class="brand-text font-weight-light">Admin</span>
+        <span class="brand-text font-weight-light">Lansia Sehat</span>
     </a>
     <div class="sidebar">
         <nav class="mt-2">
@@ -30,7 +30,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/jadwal" class="nav-link">
                         <i class="nav-icon fas fa-calendar-alt"></i>
                         <p>Jadwal</p>
                     </a>
@@ -48,9 +48,9 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="/about" class="nav-link">
                         <i class="nav-icon fas fa-id-badge"></i>
-                        <p>Profile Posyandu</p>
+                        <p>Tentang Kami</p>
                     </a>
                 </li>
                 <li class="nav-item">
