@@ -56,7 +56,7 @@
                 <path
                   d="m434.146 59.882h-389.234c-24.766 0-44.912 20.146-44.912 44.912v269.47c0 24.766 20.146 44.912 44.912 44.912h389.234c24.766 0 44.912-20.146 44.912-44.912v-269.47c0-24.766-20.146-44.912-44.912-44.912zm0 29.941c2.034 0 3.969.422 5.738 1.159l-200.355 173.649-200.356-173.649c1.769-.736 3.704-1.159 5.738-1.159zm0 299.411h-389.234c-8.26 0-14.971-6.71-14.971-14.971v-251.648l199.778 173.141c2.822 2.441 6.316 3.655 9.81 3.655s6.988-1.213 9.81-3.655l199.778-173.141v251.649c-.001 8.26-6.711 14.97-14.971 14.97z" />
                 </svg>
-              <a href="#">info@lansiasehat.com</a></li>
+              <a href="#">{{ $about->email }}</a></li>
             <li>
               <svg enable-background="new 0 0 512.021 512.021" viewBox="0 0 512.021 512.021"
                 xmlns="http://www.w3.org/2000/svg">
@@ -71,7 +71,7 @@
                     d="m368.02 272c-8.836 0-16-7.164-16-16 0-52.935-43.065-96-96-96-8.836 0-16-7.164-16-16s7.164-16 16-16c70.58 0 128 57.42 128 128 0 8.836-7.163 16-16 16z" />
                 </g>
               </svg>
-              <a href="#">+62 - 234 567 890</a></li>
+              <a href="#">{{ $about->telepon }}</a></li>
           </ul>
           <a href="{{ route('dashboard') }}" class="st-top-header-btn st-smooth-move">Login</a>
         </div>
@@ -184,8 +184,8 @@
             <div class="st-seperator-center"><img src="{{url('frontend/assets/img/icons/4.png')}}" alt="icon"></div>
             <div class="st-seperator-right wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.2s"></div>
           </div>
-          <div class="st-section-heading-subtitle">Lansia Sehat hadir dengan misi memberikan pelayanan dan informasi kesehatan terbaik untuk para lansia. 
-            Kami percaya bahwa dengan dukungan yang tepat, masa tua bisa menjadi masa yang penuh kebahagiaan dan produktivitas.</div>
+          <div class="st-section-heading-subtitle">
+            {{ $about->tentang }}
         </div>
         <div class="st-height-b40 st-height-lg-b40"></div>
       </div>
@@ -198,21 +198,14 @@
                   <h2 class="st-text-block-title">Visi</h2>
                   <div class="st-height-b20 st-height-lg-b20"></div>
                   <div class="st-text-block-text">
-                    <p>Mewujudkan masyarakat yang peduli terhadap kesehatan dan kesejahteraan lansia.</p>
-                    <p>Menjadi platform utama yang memberikan informasi dan layanan kesehatan yang inovatif.
-                    </p>
-                    <p>Membangun kesadaran akan pentingnya kesehatan di usia lanjut.</p>
-                    <p>Memberikan dukungan yang berkelanjutan kepada komunitas lansia.</p>
+                    {{ $about->visi }}
                   </div>
                 </div>
                 <div class="st-text-block st-style1">
                     <h2 class="st-text-block-title">Misi</h2>
                     <div class="st-height-b20 st-height-lg-b20"></div>
                     <div class="st-text-block-text">
-                      <p>Menyediakan informasi kesehatan yang akurat dan terpercaya.</p>
-                      <p>Mendukung program posyandu dengan menyediakan data dan informasi yang up-to-date.</p>
-                      <p>Menyediakan layanan skrining kesehatan.</p>
-                      <p>Menggunakan teknologi untuk memperluas jangkauan informasi.</p>
+                        {{ $about->misi }}
                     </div>
                   </div>
               </div>
@@ -222,36 +215,20 @@
           <div class="col-lg-5 wow fadeInRight" data-wow-duration="0.8s" data-wow-delay="0.2s">
             <div class="st-shedule-wrap">
               <div class="st-shedule">
-                <h2 class="st-shedule-title">Jadwal Layanan</h2>
+                <!-- resources/views/landing/index.blade.php -->
                 <ul class="st-shedule-list">
-                  <li>
-                    <div class="st-shedule-left">Senin</div>
-                    <div class="st-shedule-right">8:00am–7:00pm </div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Selasa</div>
-                    <div class="st-shedule-right">Libur </div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Rabu</div>
-                    <div class="st-shedule-right">Libur </div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Kamis</div>
-                    <div class="st-shedule-right">8:00am–7:00pm</div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Jum'at</div>
-                    <div class="st-shedule-right">8:00am–7:00pm</div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Sabtu</div>
-                    <div class="st-shedule-right">Libur</div>
-                  </li>
-                  <li>
-                    <div class="st-shedule-left">Minggu</div>
-                    <div class="st-shedule-right">Libur</div>
-                  </li>
+                    @foreach ($data as $item)
+                        <li>
+                            <div class="st-shedule-left">{{ $item->hari }}</div>
+                            <div class="st-shedule-right">
+                                @if ($item->status === 'Tutup')
+                                    Tutup
+                                @else
+                                    {{ $item->jam_mulai }}–{{ $item->jam_sampai }}
+                                @endif
+                            </div>
+                        </li>
+                    @endforeach
                 </ul>
                 <div class="st-height-b25 st-height-lg-b25"></div>
                 <div class="st-call st-style1">
@@ -298,7 +275,7 @@
                   </div>
                   <div class="st-call-text">
                     <div class="st-call-title">Hubungi Kami</div>
-                    <div class="st-call-number">(+62) - 234 567 890</div>
+                    <div class="st-call-number">{{ $about->telepon }}</div>
                   </div>
                 </div>
               </div>
@@ -795,61 +772,65 @@
       </div>
       <div class="container">
         <div class="row">
-          <div class="col-lg-10 offset-lg-1">
-            <div id="st-alert"></div>
-            <form action="{{url('frontend/assets/php/mail.php')}}" class="row st-contact-form st-type1" method="post" id="contact-form">
-              <div class="col-lg-6">
-                <div class="st-form-field st-style1">
-                  <label>Nama</label>
-                  <input type="text" id="name" name="name" placeholder="Ursula" required>
-                </div>
-              </div><!-- .col -->
-              <div class="col-lg-6">
-                <div class="st-form-field st-style1">
-                  <label>Email</label>
-                  <input type="text" id="email" name="email" placeholder="0123456@ut.ac.id" required>
-                </div>
-              </div><!-- .col -->
-              <div class="col-lg-6">
-                <div class="st-form-field st-style1">
-                  <label>Tema</label>
-                  <input type="text" id="subject" name="subject" placeholder="Tulis Tema" required>
-                </div>
-              </div><!-- .col -->
-              <div class="col-lg-6">
-                <div class="st-form-field st-style1">
-                  <label>Telepon</label>
-                  <input type="text" id="phone" name="phone" placeholder="+62 376 12 465" required>
-                </div>
-              </div><!-- .col -->
-              <div class="col-lg-12">
-                <div class="st-form-field st-style1">
-                  <label>Pesan Anda</label>
-                  <textarea cols="30" rows="10" id="msg" name="msg" placeholder="Tulis sesuatu disini..."
-                    required></textarea>
-                </div>
-              </div><!-- .col -->
-              <div class="col-lg-12">
-                <div class="text-center">
-                  <div class="st-height-b10 st-height-lg-b10"></div>
-                  <button class="st-btn st-style1 st-color1 st-size-medium" type="submit" id="submit" name="submit">Kirim 
-                    Pesan
-                  </button>
-                </div>
-              </div><!-- .col -->
-            </form>
-          </div><!-- .col -->
+            <div class="col-lg-10 offset-lg-1">
+                <div id="st-alert"></div>
+                <form id="contact-form" class="row st-contact-form st-type1">
+                    <div class="col-lg-6">
+                        <div class="st-form-field st-style1">
+                            <label>Nama</label>
+                            <input type="text" id="name" name="name" placeholder="Ursula" required>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-lg-6">
+                        <div class="st-form-field st-style1">
+                            <label>Email</label>
+                            <input type="text" id="email" name="email" placeholder="0123456@ut.ac.id" required>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-lg-6">
+                        <div class="st-form-field st-style1">
+                            <label>Tema</label>
+                            <input type="text" id="subject" name="subject" placeholder="Tulis Tema" required>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-lg-6">
+                        <div class="st-form-field st-style1">
+                            <label>Telepon</label>
+                            <input type="text" id="phone" name="phone" placeholder="+62 376 12 465" required>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-lg-12">
+                        <div class="st-form-field st-style1">
+                            <label>Pesan Anda</label>
+                            <textarea cols="30" rows="10" id="msg" name="msg" placeholder="Tulis sesuatu disini..." required></textarea>
+                        </div>
+                    </div><!-- .col -->
+                    <div class="col-lg-12">
+                        <div class="text-center">
+                            <div class="st-height-b10 st-height-lg-b10"></div>
+                            <button type="submit" class="st-btn st-style1 st-color1 st-size-medium">Kirim Pesan</button>
+                        </div>
+                    </div><!-- .col -->
+                </form>
+            </div><!-- .col -->
         </div>
-      </div>
+    </div>
       <div class="st-height-b120 st-height-lg-b80"></div>
     </section>
     <!-- End Contact Section -->
 
-    <div class="st-google-map">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d96652.27317354927!2d-74.33557928194516!3d40.79756494697628!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c3a82f1352d0dd%3A0x81d4f72c4435aab5!2sTroy+Meadows+Wetlands!5e0!3m2!1sen!2sbd!4v1563075599994!5m2!1sen!2sbd"
-        allowfullscreen></iframe>
+    <div class="st-section-map">
+        <iframe
+            src="{{ $about->maps }}"
+            width="100%"
+            height="450"
+            style="border:0; width: 100%;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
     </div>
+
   </div>
   <!-- Start Footer -->
   <footer class="st-site-footer st-sticky-footer st-dynamic-bg" data-src="{{url('frontend/assets/img/footer-bg.png')}}">
@@ -887,10 +868,10 @@
             <div class="st-footer-widget">
               <h2 class="st-footer-widget-title">Hubungi Kami</h2>
               <ul class="st-footer-contact-list st-mp0">
-                <li><span class="st-footer-contact-title">Alamat:</span> Jl.In aja dulu,No 113,Banjarmasin
+                <li><span class="st-footer-contact-title">Alamat:</span> {{ $about->alamat }}
                 </li>
-                <li><span class="st-footer-contact-title">Email:</span> info@lansiasehat.com</li>
-                <li><span class="st-footer-contact-title">Phone:</span> (+62) - 234 567 890 <br>(+62) - 345 678 901</li>
+                <li><span class="st-footer-contact-title">Email:</span> {{ $about->email }}</li>
+                <li><span class="st-footer-contact-title">Phone:</span> {{ $about->telepon }}</li>
               </ul>
             </div>
           </div><!-- .col -->
@@ -943,5 +924,31 @@
   <script src="{{url('frontend/assets/js/textRotate.min.js')}}"></script>
   <script src="{{url('frontend/assets/js/select2.min.js')}}"></script>
   <script src="{{url('frontend/assets/js/main.js')}}"></script>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah form untuk di-submit secara biasa
+
+        // Mengambil data dari form
+        var name = document.getElementById('name').value;
+        var email = document.getElementById('email').value;
+        var subject = document.getElementById('subject').value;
+        var phone = document.getElementById('phone').value;
+        var msg = document.getElementById('msg').value;
+
+        // Membuat pesan WhatsApp dengan data dari form
+        var message = 'Nama: ' + encodeURIComponent(name) + '%0A' +
+                      'Email: ' + encodeURIComponent(email) + '%0A' +
+                      'Tema: ' + encodeURIComponent(subject) + '%0A' +
+                      'Telepon: ' + encodeURIComponent(phone) + '%0A' +
+                      'Pesan: ' + encodeURIComponent(msg);
+
+        // Membuat link WhatsApp
+        var whatsappUrl = 'https://wa.me/6287821626413?text=' + message;
+
+        // Mengarahkan pengguna ke WhatsApp
+        window.open(whatsappUrl, '_blank');
+    });
+</script>
 </body>
 </html>
