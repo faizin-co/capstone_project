@@ -122,7 +122,7 @@ class ScreeningController extends Controller
     $apiKey = 'ip6qa7w3ia1sOr5i6x0X8KsgpakyTu';
     $sender = '6287821626413';
     $number = $data->pas_hp;
-    $message = "Hello " . $data->pas_name . ",\n\n" . $screeningResult;
+    $message = "Hallo " . $data->pas_name . ",\n\n" . $screeningResult;
 
     $url = "https://config.sibunda.id/send-message";
 
